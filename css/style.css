@@ -252,7 +252,6 @@ input.btn_new_note {
    font-weight:bolder;
    letter-spacing:1px;
 }
-/* animacja pojawiania się komunikatu */
 .animate {
    -webkit-animation: animatezoom 0.6s;
    animation: animatezoom 0.6s
