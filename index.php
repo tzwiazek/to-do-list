@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -53,7 +54,7 @@
             else if($_GET["name"]=="in progress") {$q = mysqli_query($c, "SELECT * FROM `to_do_list` WHERE status='IN PROGRESS'");}
             else if($_GET["name"]=="needs review") {$q = mysqli_query($c, "SELECT * FROM `to_do_list` WHERE status='NEEDS REVIEW'");}
             else if($_GET["name"]=="finished") {$q = mysqli_query($c, "SELECT * FROM `to_do_list` WHERE status='FINISHED'");}
-            else {header("Location:index.php");}
+            else {$q = mysqli_query($c, "SELECT * FROM `to_do_list` ");}
             while($r = mysqli_fetch_assoc($q)) {
                echo "<div class='note'><div class='btn_remove'><p><a href='index.php?remove=".$r['ID']."'>X</a></p></div><textarea id='title".$r['ID']."' onclick='udpate_note(".$r['ID'].")' onchange='udpate_note(".$r['ID'].")' class='title'>".$r['Title']."</textarea><textarea id='text".$r['ID']."' onclick='udpate_note(".$r['ID'].")' onchange='udpate_note(".$r['ID'].")' class='text'>".$r['Text']."</textarea><div class='status'><ul><li><a class='s_status' href='#'>".$r['Status']."</a><ul><a href='index.php?change_status=".$r['ID']."&status=0'><li>ON HOLD</li></a><a href='index.php?change_status=".$r['ID']."&status=1'><li>IN PROGRESS</li></a><a href='index.php?change_status=".$r['ID']."&status=2'><li>NEEDS REVIEW</li></a><a href='index.php?change_status=".$r['ID']."&status=3'><li>FINISHED</li></a></ul></li></ul></div></div>";
             }

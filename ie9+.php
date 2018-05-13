@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -58,7 +59,7 @@
             else if($_GET["name"]=="in progress") {$q = mysqli_query($c, "SELECT * FROM `to_do_list` WHERE status='IN PROGRESS'");}
             else if($_GET["name"]=="needs review") {$q = mysqli_query($c, "SELECT * FROM `to_do_list` WHERE status='NEEDS REVIEW'");}
             else if($_GET["name"]=="finished") {$q = mysqli_query($c, "SELECT * FROM `to_do_list` WHERE status='FINISHED'");}
-            else {header("Location:index.php");}
+            else {$q = mysqli_query($c, "SELECT * FROM `to_do_list` ");}
             while($r = mysqli_fetch_assoc($q)) {
                echo "
                <div class='note'>
